@@ -8,7 +8,7 @@ To create organization level secrets:
 
 ```hcl
 module "github-azure-secrets" {
-  source = "git::https://github.com/eit-poc/terraform-modules.git//github-azure-secrets"
+  source = "git::https://github.com/EIT-POC/github-azure-secrets.git"
 
   vault_name     = "my-vault"
   resource_group = "my-resource-group"
@@ -20,7 +20,7 @@ To create repository level secrets for a repository within an organization:
 
 ```hcl
 module "github-azure-secrets" {
-  source = "git::https://github.com/eit-poc/terraform-modules.git//github-azure-secrets"
+  source = "git::https://github.com/EIT-POC/github-azure-secrets.git"
 
   scope_to_repository = true
   vault_name          = "my-vault"
@@ -35,7 +35,7 @@ To create repository level secrets for a personal repository:
 
 ```hcl
 module "github-azure-secrets" {
-  source = "git::https://github.com/eit-poc/terraform-modules.git//github-azure-secrets"
+  source = "git::https://github.com/EIT-POC/github-azure-secrets.git"
 
   scope_to_repository = true
   vault_name          = "my-vault"
@@ -50,7 +50,7 @@ With a private GitHub instance:
 
 ```hcl
 module "github-azure-secrets" {
-  source = "git::https://github.com/eit-poc/terraform-modules.git//github-azure-secrets"
+  source = "git::https://github.com/EIT-POC/github-azure-secrets.git"
 
   scope_to_repository = true
   vault_name          = "my-vault"
@@ -66,7 +66,7 @@ Using filters:
 
 ```hcl
 module "github-azure-secrets" {
-  source = "git::https://github.com/eit-poc/terraform-modules.git//github-azure-secrets"
+  source = "git::https://github.com/EIT-POC/github-azure-secrets.git"
 
   scope_to_repository = true
   vault_name          = "my-vault"
