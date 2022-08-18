@@ -10,9 +10,14 @@ To create organization level secrets:
 module "github-azure-secrets" {
   source = "git::https://github.com/EIT-POC/github-azure-secrets.git"
 
-  vault_name     = "my-vault"
-  resource_group = "my-resource-group"
-  organization   = "my-org"
+  arm_subscription_id = var.arm_subscription_id
+  arm_tenant_id       = var.arm_tenant_id
+  arm_client_id       = var.arm_client_id
+  arm_client_secret   = var.arm_client_secret
+  github_token        = var.github_token
+  vault_name          = "my-vault"
+  resource_group      = "my-resource-group"
+  organization        = "my-org"
 }
 ```
 
@@ -22,6 +27,10 @@ To create repository level secrets for a repository within an organization:
 module "github-azure-secrets" {
   source = "git::https://github.com/EIT-POC/github-azure-secrets.git"
 
+  arm_subscription_id = var.arm_subscription_id
+  arm_tenant_id       = var.arm_tenant_id
+  arm_client_id       = var.arm_client_id
+  arm_client_secret   = var.arm_client_secret
   scope_to_repository = true
   vault_name          = "my-vault"
   resource_group      = "my-resource-group"
@@ -37,6 +46,10 @@ To create repository level secrets for a personal repository:
 module "github-azure-secrets" {
   source = "git::https://github.com/EIT-POC/github-azure-secrets.git"
 
+  arm_subscription_id = var.arm_subscription_id
+  arm_tenant_id       = var.arm_tenant_id
+  arm_client_id       = var.arm_client_id
+  arm_client_secret   = var.arm_client_secret
   scope_to_repository = true
   vault_name          = "my-vault"
   resource_group      = "my-resource-group"
@@ -52,6 +65,10 @@ With a private GitHub instance:
 module "github-azure-secrets" {
   source = "git::https://github.com/EIT-POC/github-azure-secrets.git"
 
+  arm_subscription_id = var.arm_subscription_id
+  arm_tenant_id       = var.arm_tenant_id
+  arm_client_id       = var.arm_client_id
+  arm_client_secret   = var.arm_client_secret
   scope_to_repository = true
   vault_name          = "my-vault"
   resource_group      = "my-resource-group"
@@ -68,6 +85,10 @@ Using filters:
 module "github-azure-secrets" {
   source = "git::https://github.com/EIT-POC/github-azure-secrets.git"
 
+  arm_subscription_id = var.arm_subscription_id
+  arm_tenant_id       = var.arm_tenant_id
+  arm_client_id       = var.arm_client_id
+  arm_client_secret   = var.arm_client_secret
   scope_to_repository = true
   vault_name          = "my-vault"
   resource_group      = "my-resource-group"
@@ -92,8 +113,8 @@ module "github-azure-secrets" {
 
 | Name | Version |
 |------|---------|
-| azurerm | 3.18.0 |
-| github | 4.29.0 |
+| azurerm | ~> 3.0 |
+| github | ~> 4.0 |
 
 ## Modules
 
@@ -115,8 +136,12 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| GITHUB\_TOKEN | The GitHub token to use for authentication. | `string` | n/a | yes |
+| arm\_client\_id | Azure Client ID to use for authentication. | `string` | n/a | yes |
+| arm\_client\_secret | Azure Client Secret to use for authentication. | `string` | n/a | yes |
+| arm\_subscription\_id | Azure subscription ID | `string` | n/a | yes |
+| arm\_tenant\_id | Azure Tenant ID | `string` | n/a | yes |
 | base\_url | (Optional) This is the target GitHub base API endpoint. Providing a value is a requirement when working with GitHub Enterprise. | `string` | `"https://api.github.com/"` | no |
+| github\_token | The GitHub token to use for authentication. | `string` | n/a | yes |
 | name\_filter | (Optional) A regex filter to limit the secrets that are synced by name. | `string` | `".*"` | no |
 | organization | (Optional) The case-sensitive name of the organization that we will be syncing secrets to. If repo\_within\_org is true, the organization and repo will be combined with a '/'. | `string` | `"some-org"` | no |
 | read\_delay\_ms | (Optional) The number of milliseconds to sleep in between non-write operations in order to satisfy the GitHub API rate limits. Defaults to 0ms | `number` | `0` | no |
