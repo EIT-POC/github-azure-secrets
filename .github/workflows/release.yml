@@ -1,26 +1,24 @@
 ---
-name: "pre-release"
+name: "tagged-release"
 
 on:
-  pull_request:
-    branches: [main, master]
+  push:
+    tags:
+      - "v*"
 
 jobs:
-  pre-release:
-    name: "Pre Release"
+  tagged-release:
     runs-on: "ubuntu-latest"
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Publish Pre-Release
+      - name: Publish Release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest-rc"
-          prerelease: true
-          title: "Latest Pre-Release"
+          prerelease: false
           files: |
             LICENSE.txt
             *.tf
