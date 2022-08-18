@@ -1,0 +1,26 @@
+---
+name: "pre-release"
+
+on:
+  pull_request:
+  
+
+jobs:
+  pre-release:
+    name: "Pre Release"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Publish Pre-Release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest-rc"
+          prerelease: true
+          title: "Latest Pre-Release"
+          files: |
+            LICENSE.txt
+            *.tf
