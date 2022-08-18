@@ -3,7 +3,36 @@
 # - ARM_TENANT_ID
 # - ARM_CLIENT_ID
 # - ARM_CLIENT_SECRET
-# - TF_VAR_GITHUB_TOKEN
+
+variable "arm_subscription_id" {
+  type        = string
+  sensitive   = true
+  description = "Azure subscription ID"
+}
+
+variable "arm_tenant_id" {
+  type        = string
+  sensitive   = true
+  description = "Azure Tenant ID"
+}
+
+variable "arm_client_id" {
+  type        = string
+  sensitive   = true
+  description = "Azure Client ID to use for authentication."
+}
+
+variable "arm_client_secret" {
+  type        = string
+  sensitive   = true
+  description = "Azure Client Secret to use for authentication."
+}
+
+variable "github_token" {
+  type        = string
+  sensitive   = true
+  description = "The GitHub token to use for authentication."
+}
 
 # ^[a-zA-Z0-9-]{3,24}$
 # https://docs.microsoft.com/en-us/rest/api/keyvault/keyvault/vaults/create-or-update?tabs=HTTP
@@ -90,15 +119,6 @@ variable "base_url" {
     condition     = can(regex("^(?:https?):[/]{2}[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|][/]{1}$", var.base_url))
     error_message = "Valid base URL must begin with 'http://' or 'https://', contain valid characters and end with '/'."
   }
-}
-
-# https://github.com/integrations/terraform-provider-github/issues/578
-# integrations/github < v5 discards owner if using GITHUB_TOKEN from env
-# workaround is to pass the token as a variable.  
-variable "GITHUB_TOKEN" {
-  type        = string
-  description = "The GitHub token to use for authentication."
-  sensitive   = true
 }
 
 variable "tag_filter" {
