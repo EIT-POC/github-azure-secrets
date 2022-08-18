@@ -1,13 +1,13 @@
 ---
 version: 2
 updates:
- - package-ecosystem: "terraform"
-   directory: "/"
-   schedule:
-     interval: "daily"
-   reviewers:
+  - package-ecosystem: "terraform"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    reviewers:
       - "cam3ron2"
     labels:
-      - "go"
+      - "terraform"
       - "dependencies"
     open-pull-requests-limit: 1
