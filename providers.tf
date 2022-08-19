@@ -17,7 +17,7 @@ provider "azurerm" {
 # Configure the GitHub Provider
 provider "github" {
   owner          = var.scope_to_repository ? var.repo_within_org ? var.organization : var.user : var.organization
-  token          = var.GITHUB_TOKEN
+  token          = var.github_token
   base_url       = var.base_url
   write_delay_ms = var.write_delay_ms
   read_delay_ms  = var.read_delay_ms
