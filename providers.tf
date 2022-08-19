@@ -12,6 +12,11 @@ terraform {
 }
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
+  tenant_id       = var.arm_tenant_id
+  client_id       = var.arm_client_id
+  client_secret   = var.arm_client_secret
+  subscription_id = var.arm_subscription_id
+
   features {}
 }
 # Configure the GitHub Provider
